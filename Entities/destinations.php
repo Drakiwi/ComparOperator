@@ -1,26 +1,40 @@
+
 <?php
 
-class Destination {
+class Destination
+{
+    private ?int $id = null;
+    private string $location;
+    private float $price;
+    private int $tourOperatorId;
 
-    private int $id;
-    private string $name;
-    private int $price;
-
-    public function__construct(string $name , int $price){
-        $this->name = $name;
+    public function __construct(
+        string $location,
+        float $price,
+        int $tourOperatorId
+    ) {
+        $this->location = $location;
         $this->price = $price;
+        $this->tourOperatorId = $tourOperatorId;
     }
 
-    public function getId(): int{
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getName(): string{
-        return $this->name;
+    public function getLocation(): string
+    {
+        return $this->location;
     }
 
-    public function getPrice(): int{
+    public function getPrice(): float
+    {
         return $this->price;
     }
+
+    public function getTourOperatorId(): int
+    {
+        return $this->tourOperatorId;
+    }
 }
-?>
