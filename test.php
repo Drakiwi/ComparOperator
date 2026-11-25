@@ -1,7 +1,7 @@
 <?php
 
 require_once 'database.php';
-require_once 'Entities/ToursOperator.php';
+require_once 'Entities/TourOperator.php';
 require_once 'Entities/destinations.php';
 
 $tourOperator = TourOperator::getById($db, 2);

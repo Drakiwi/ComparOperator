@@ -113,7 +113,7 @@ class TourOperator{
         );
         $result = $request->execute([
             'name'=> $this->name,
-            'link'=> $this->link
+            'link'=> $this->link,
             'grade_count' => $this->gradeCount,
             'grade_total' => $this->gradeTotal,
             'is_premium' => $this->isPremium
@@ -125,6 +125,33 @@ class TourOperator{
         return $result;
     }
 
+
+    public function setPremium(PDO $db, bool $isPremium): bool{
+        $request = $db->prepare(
+            'UPDATE tour_operator
+            SET is_premium = :is_premium
+            WHERE id = :id'
+        );
+
+        $result = $request->execute([
+            'is_premium' => (int) $isPremium,
+            'id' => $this->id
+        ]);
+
+        if ($result) {
+            $this->isPremium = $isPremium;
+        }
+        return $result;
+    }
+
+    public function getDestinations(PDO $db): array{
+
+        if ($this->id === null) {
+            return [];
+        }
+
+        return Destination::getAllByTourOperator($db, $this->id);
+    }
 
     public function getDestinations(PDO $db): array{
         

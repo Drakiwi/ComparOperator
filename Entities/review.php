@@ -67,4 +67,31 @@ class Review{
 
         return $result;
     }
+
+
+    public static function getById(PDO $db, int $id): ?Review{
+
+        $request = $db->prepare(
+            'SELECT * FROM review WHERE id = ?'
+        );
+
+        $request->execute([$id]);
+
+        $result = $request->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        $review = new Review(
+            $result['message'],
+            $result['author'],
+            $result['tour_operator_id']
+        );
+
+        $review->id = $result['id'];
+
+        return $review;
+    }
+
 }
