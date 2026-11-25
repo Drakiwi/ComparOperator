@@ -81,6 +81,34 @@ class Destination
 
     }
 
+
+    public static function getAllByTourOperator(PDO $db, int $tourOperatorId): array{
+        $request = $db->prepare(
+            'SELECT * FROM destination WHERE tour_operator_id = ?'
+        );
+
+        $request->execute([$tourOperatorId]);
+
+        $results = $request->fetchAll(PDO::FETCH_ASSOC);
+
+        $destinations = [];
+
+        foreach ($results as $result) {
+
+             $destination = new Destination(
+                $result['location'],
+                $result['price'],
+                $result['tour_operator_id']
+            );
+
+            $destination->id = $result['id'];
+
+            $destinations[] = $destination;
+        }
+
+        return $destinations;
+    }
+
     public function create(PDO $db) : bool{
         $request = $db->prepare(
             'INSERT INTO destination (location, price, tour_operator_id)

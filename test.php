@@ -1,13 +1,21 @@
 <?php
 
 require_once 'database.php';
-require_once 'Entities/review.php';
+require_once 'Entities/ToursOperator.php';
+require_once 'Entities/destinations.php';
 
-$reviews = Review::getAllByTourOperator($db, 2);
+$tourOperator = TourOperator::getById($db, 2);
 
-foreach ($reviews as $review) {
+if ($tourOperator) {
 
-    echo $review->getAuthor() . '<br>';
-    echo $review->getMessage() . '<hr>';
+    echo '<h2>' . $tourOperator->getName() . '</h2>';
 
+    $destinations = $tourOperator->getDestinations($db);
+
+    foreach ($destinations as $destination) {
+
+        echo $destination->getLocation() . ' - ';
+        echo $destination->getPrice() . ' €<br>';
+
+    }
 }

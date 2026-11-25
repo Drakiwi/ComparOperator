@@ -124,4 +124,11 @@ class TourOperator{
         }
         return $result;
     }
+
+
+    public function getDestinations(PDO $db): array{
+        
+        return Destination::getAllByTourOperator($db, $this->id);
+    }
+
 }
