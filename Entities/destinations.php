@@ -8,11 +8,7 @@ class Destination
     private float $price;
     private int $tourOperatorId;
 
-    public function __construct(
-        string $location,
-        float $price,
-        int $tourOperatorId
-    ) {
+    public function __construct(string $location, float $price, int $tourOperatorId){
         $this->location = $location;
         $this->price = $price;
         $this->tourOperatorId = $tourOperatorId;

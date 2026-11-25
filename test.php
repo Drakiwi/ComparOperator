@@ -1,16 +1,13 @@
 <?php
 
 require_once 'database.php';
-require_once 'Entities/destinations.php';
+require_once 'Entities/review.php';
 
-$destination = new Destination('Lisbonne', 1800, 2);
+$reviews = Review::getAllByTourOperator($db, 2);
 
-if ($destination->create($db)) {
+foreach ($reviews as $review) {
 
-    echo 'Destination ajoutée !';
-
-} else {
-
-    echo 'Erreur lors de l\'ajout.';
+    echo $review->getAuthor() . '<br>';
+    echo $review->getMessage() . '<hr>';
 
 }
