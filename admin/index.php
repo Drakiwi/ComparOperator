@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])){
         }
     }
 
-    if ($_POST['action'] === 'ajouter_destination') {
+    if ($_POST['action'] === 'ajouter_destination'){
 
         $location = $_POST['location'] ?? '';
         $price = (float) ($_POST['price'] ?? 0);
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])){
         }
     }
 
-    if ($_POST['action'] === 'premium') {
+    if ($_POST['action'] === 'premium'){
 
         $tourOperatorId = (int) ($_POST['tour_operator_id'] ?? 0);
         $premium = ($_POST['premium'] ?? '0') === '1';
@@ -113,16 +113,16 @@ $tousLesTo = TourOperator::getAll($db);
 
     <div class="container hero-content">
 
-        <h1 class="hero-title">Espace administrateur</h1>
+        <h1 class="hero-title">Espace pour l'administrateur</h1>
 
         <p class="hero-sub">
-            Gérez les tour-opérateurs et leurs destinations.
+            Gérez les tours-opérateurs et leurs destinations.
         </p>
 
         <div class="trust-row">
-            <span class="trust-item">Gestion des opérateurs</span>
+            <span class="trust-item">Gestion des agences</span>
             <span class="trust-item">Gestion des destinations</span>
-            <span class="trust-item">Offres Premium</span>
+            <span class="trust-item">Ajouter "l'etiquette" Premium</span>
         </div>
 
     </div>
@@ -140,10 +140,6 @@ $tousLesTo = TourOperator::getAll($db);
 <section class="section-ocean">
 
     <div class="container">
-
-        <?php if ($message): ?>
-            <p class="flash"><?= htmlspecialchars($message) ?></p>
-        <?php endif; ?>
 
         <h2 class="section-title">Ajouter un tour-opérateur</h2>
 
@@ -220,7 +216,7 @@ $tousLesTo = TourOperator::getAll($db);
 
     </div>
 
-    <h2 class="section-title">Gérer les opérateurs Premium</h2>
+    <h2 class="section-title">Gérer les opérateurs</h2>
 
     <div class="admin-list">
 
@@ -248,6 +244,14 @@ $tousLesTo = TourOperator::getAll($db);
                     </button>
 
                 </form>
+                <?php if ($to->isPremium()): ?>
+                <p>
+                    Site :
+                    <a href="<?= htmlspecialchars($to->getLink()) ?>" target="_blank">
+                        <?= htmlspecialchars($to->getLink()) ?>
+                    </a>
+                </p>
+                <?php endif; ?>
 
             </div>
 
