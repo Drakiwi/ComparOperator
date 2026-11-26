@@ -82,6 +82,18 @@ class Destination
     }
 
 
+    // Liste des destinations disponibles (fixe, 10 max)
+    public static function getLocations(PDO $db): array
+    {
+        $request = $db->query('SELECT DISTINCT location FROM destination ORDER BY location');
+        $rows = $request->fetchAll(PDO::FETCH_ASSOC);
+        $locations = [];
+        foreach ($rows as $row) {
+            $locations[] = $row['location'];
+        }
+        return $locations;
+    }
+
     public static function getAllByTourOperator(PDO $db, int $tourOperatorId): array{
         $request = $db->prepare(
             'SELECT * FROM destination WHERE tour_operator_id = ?'
@@ -103,6 +115,27 @@ class Destination
 
             $destination->id = $result['id'];
 
+            $destinations[] = $destination;
+        }
+
+        return $destinations;
+    }
+
+    public static function getAllByLocation(PDO $db, string $location): array
+    {
+        $request = $db->prepare('SELECT * FROM destination WHERE location = ?');
+        $request->execute([$location]);
+        $results = $request->fetchAll(PDO::FETCH_ASSOC);
+
+        $destinations = [];
+
+        foreach ($results as $result) {
+            $destination = new Destination(
+                $result['location'],
+                (float) $result['price'],
+                (int) $result['tour_operator_id']
+            );
+            $destination->id = (int) $result['id'];
             $destinations[] = $destination;
         }
 

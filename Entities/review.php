@@ -29,6 +29,16 @@ class Review{
         return $this->tourOperatorId;
     }
 
+    // Verifie si un auteur a deja laisse un avis pour ce TO
+    public static function hasReviewed(PDO $db, int $tourOperatorId, string $author): bool
+    {
+        $request = $db->prepare(
+            'SELECT COUNT(*) FROM review WHERE tour_operator_id = ? AND author = ?'
+        );
+        $request->execute([$tourOperatorId, $author]);
+        return (int) $request->fetchColumn() > 0;
+    }
+
     public static function getAllByTourOperator(PDO $db, int $tourOperatorId): array{
         $request = $db->prepare(
             'SELECT * FROM review WHERE tour_operator_id = ?'
@@ -49,6 +59,15 @@ class Review{
         }
         return $reviews;
     }
+    public static function existsByAuthorAndTourOperator(PDO $db, string $author, int $tourOperatorId): bool
+    {
+        $request = $db->prepare(
+            'SELECT COUNT(*) FROM review WHERE author = ? AND tour_operator_id = ?'
+        );
+        $request->execute([$author, $tourOperatorId]);
+        return (int) $request->fetchColumn() > 0;
+    }
+
     public function create(PDO $db): bool{
         $request = $db->prepare(
             'INSERT INTO review (message, author, tour_operator_id)
