@@ -43,7 +43,7 @@ class Destination
 
         $destinations = [];
 
-        foreach ($results as $result) {
+        foreach ($results as $result){
 
         $destination = new Destination(
             $result['location'],
@@ -81,8 +81,6 @@ class Destination
 
     }
 
-
-    // Liste des destinations disponibles (fixe, 10 max)
     public static function getLocations(PDO $db): array
     {
         $request = $db->query('SELECT DISTINCT location FROM destination ORDER BY location');

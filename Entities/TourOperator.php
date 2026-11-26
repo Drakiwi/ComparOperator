@@ -48,7 +48,6 @@ class TourOperator
         return $this->isPremium;
     }
 
-    // Note moyenne (0 si aucun avis)
     public function getGrade(): float
     {
         if ($this->gradeCount === 0) {
@@ -57,7 +56,6 @@ class TourOperator
         return $this->gradeTotal / $this->gradeCount;
     }
 
-    // Toutes les TO
     public static function getAll(PDO $db): array
     {
         $request = $db->query('SELECT * FROM tour_operator');
@@ -99,7 +97,6 @@ class TourOperator
         return $tourOperator;
     }
 
-    // Creer un nouveau TO
     public function create(PDO $db): bool
     {
         $request = $db->prepare(
@@ -120,7 +117,6 @@ class TourOperator
         return $result;
     }
 
-    // Passer en premium (ou non)
     public function setPremium(PDO $db, bool $isPremium): bool
     {
         $request = $db->prepare(
@@ -137,7 +133,6 @@ class TourOperator
         return $result;
     }
 
-    // Ajouter une note (augmente la moyenne)
     public function addGrade(PDO $db, int $grade): bool
     {
         $this->gradeCount++;
@@ -154,7 +149,6 @@ class TourOperator
         return $result;
     }
 
-    // Destinations d'un TO
     public function getDestinations(PDO $db): array
     {
         if ($this->id === null) {

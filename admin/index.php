@@ -8,12 +8,12 @@ $locations = ['Rome', 'Londres', 'Monaco', 'Tunis', 'Tokyo', 'Marrakech', 'Bangk
 
 $message = '';
 
-if(isset($_SESSION['admin_message'])) {
+if(isset($_SESSION['admin_message'])){
     $message = $_SESSION['admin_message'];
     unset($_SESSION['admin_message']);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])){
 
     if ($_POST['action'] === 'ajouter_to') {
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         if ($name !== '' && filter_var($link, FILTER_VALIDATE_URL)) {
             $to = new TourOperator($name, $link);
 
-            if ($to->create($db)) {
+            if ($to->create($db)){
                 $_SESSION['admin_message'] = 'Tour-opérateur ajouté avec succès !';
             } else{
                 $_SESSION['admin_message'] = 'Erreur lors de l’ajout du tour-opérateur.';
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $to = TourOperator::getById($db, $tourOperatorId);
 
         if ($to !== null) {
-            if ($to->setPremium($db, $premium)) {
+            if ($to->setPremium($db, $premium)){
                 $_SESSION['admin_message'] = 'Statut Premium modifié avec succès !';
             } else {
                 $_SESSION['admin_message'] = 'Erreur lors de la modification du statut.';
@@ -87,8 +87,6 @@ $tousLesTo = TourOperator::getAll($db);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Administration - ComparOperator</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
