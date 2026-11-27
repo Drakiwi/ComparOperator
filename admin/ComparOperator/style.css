@@ -1,0 +1,128 @@
+/* =========================================================
+   ComparOperator - Administration (meme style que le site)
+   ========================================================= */
+
+/* Dans le hero, on reprend le logo et le menu bleu fonce du mockup */
+.admin-page .site-nav .logo {
+    color: var(--ocean-deep);
+    text-shadow: none;
+    animation: none;
+    letter-spacing: 0.3px;
+}
+
+/* Menu empile sous le logo, comme sur le modele */
+.admin-page .site-nav > .container {
+    max-width: 100%;
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.2rem;
+}
+
+.admin-page .site-nav .nav-menu { gap: 1.3rem; }
+
+/* Le contenu occupe toute la largeur (comme sur le modele) */
+.admin-page .hero > .container,
+.admin-page main .container {
+    max-width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.admin-page .site-nav .nav-menu > a,
+.admin-page .site-nav .nav-btn {
+    color: var(--ocean-deep);
+}
+
+.admin-page .site-nav .nav-menu > a:hover,
+.admin-page .site-nav .nav-btn:hover {
+    color: var(--ocean);
+}
+
+.admin-page .site-nav .nav-menu > a.active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* Titre hero */
+.admin-page .hero-title { line-height: 0.92; }
+.admin-page .hero-sub { max-width: 640px; }
+
+/* Pastilles du hero */
+.admin-pills { margin-top: 1.8rem; }
+.admin-pills a.trust-item {
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+.admin-pills a.trust-item:hover { background: rgba(255, 255, 255, 0.32); }
+
+/* Sections : bandeau teal + carte sable */
+.admin-section {
+    background: linear-gradient(120deg, var(--ocean-deep), var(--ocean));
+    padding-top: 0.4rem;
+}
+
+.admin-band {
+    text-align: center;
+    padding: 1.6rem 1rem 1.3rem;
+}
+
+.admin-band h2 {
+    color: #fff;
+    font-weight: 800;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin: 0;
+    text-shadow: 0 3px 14px rgba(10, 77, 104, 0.45);
+}
+
+.admin-card {
+    background: var(--sand-light);
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 1.6rem 1.8rem;
+    box-shadow: 0 -6px 24px rgba(10, 77, 104, 0.12);
+}
+
+.admin-card .table { margin-bottom: 0; }
+.admin-card .table > thead th { color: var(--ocean-deep); }
+
+/* Formulaires */
+.admin-field {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.admin-field label {
+    min-width: 225px;
+    color: var(--ocean-deep);
+    font-weight: 700;
+    margin: 0;
+}
+
+.admin-field input,
+.admin-field select {
+    width: 100%;
+    max-width: 330px;
+    border: 1px solid #d5e3e6;
+    border-radius: 10px;
+    padding: 0.5rem 0.85rem;
+    background: #fff;
+}
+
+.admin-field input:focus,
+.admin-field select:focus {
+    outline: none;
+    border-color: var(--ocean);
+    box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.18);
+}
+
+.admin-form .btn-brand { margin-top: 0.4rem; }
+
+/* Messages */
+.admin-page .flash { max-width: 720px; margin: 0 auto 1.5rem; }
+
+@media (max-width: 600px) {
+    .admin-field label { min-width: 100%; }
+    .admin-card { padding: 1.3rem; }
+}
