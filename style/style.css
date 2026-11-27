@@ -1,0 +1,1040 @@
+/* =========================================================
+   ComparOperator - Charte graphique (theme plage tropicale)
+   ========================================================= */
+
+:root {
+    /* Palette plage */
+    --ocean-deep: #0a4d68;     /* ocean profond */
+    --ocean: #088395;          /* ocean */
+    --ocean-light: #05bfdb;    /* turquoise clair */
+    --ocean-soft: #e0f7fa;     /* ecume */
+    --sand: #f4e4c1;           /* sable chaud */
+    --sand-light: #faf6ec;     /* sable clair */
+    --sunset: #ff6b6b;        /* corail coucher de soleil */
+    --sunset-gold: #ffa94d;   /* dore coucher de soleil */
+    --palm: #2d6a4f;           /* vert palmier */
+    --sky: #a8dadc;            /* ciel */
+    --white: #ffffff;
+    --text: #1a3a4a;
+    --text-soft: #4a6b7a;
+    --radius: 20px;
+    --radius-sm: 12px;
+    --shadow: 0 14px 40px rgba(10, 77, 104, 0.16);
+    --shadow-soft: 0 8px 24px rgba(10, 77, 104, 0.10);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
+    color: var(--text);
+    background-color: var(--sand-light);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+a { color: var(--ocean); text-decoration: none; }
+a:hover { color: var(--ocean-deep); }
+
+/* ---------- Vagues (separateurs) ---------- */
+.wave {
+    display: block;
+    width: 100%;
+    height: 80px;
+    margin: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.wave svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.wave-bottom { margin-bottom: -2px; }
+.wave-top { transform: rotate(180deg); }
+
+/* ---------- Boutons (formes nettes, sans effet generique) ---------- */
+.btn-brand,
+.btn-ghost,
+.btn-soft {
+    display: inline-block;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 0.7rem 1.5rem;
+    font-weight: 800;
+    font-size: 0.92rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-brand {
+    background: #e05245;
+    color: #fff;
+    border-color: #c44338;
+    box-shadow: 0 3px 0 #a6362c;   /* bouton "physique", pas un effet flou */
+}
+
+.btn-brand:hover {
+    background: #c44338;
+    color: #fff;
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #a6362c;
+}
+
+.btn-ghost {
+    background: #fff;
+    color: var(--ocean-deep);
+    border: 2px solid var(--ocean-deep);
+}
+
+.btn-ghost:hover {
+    background: var(--ocean-soft);
+    color: var(--ocean-deep);
+}
+
+.btn-soft {
+    background: #edf7f8;
+    color: var(--ocean-deep);
+    border-color: #c5e2e6;
+}
+
+.btn-soft:hover {
+    background: #dcf0f2;
+    color: var(--ocean-deep);
+}
+
+.btn-small { padding: 0.45rem 1rem; font-size: 0.85rem; }
+
+/* ---------- Navigation ---------- */
+.site-nav {
+    position: relative;
+    z-index: 10;
+    padding: 1.3rem 0;
+    background: transparent;
+}
+
+.site-nav.solid {
+    background: rgba(7, 48, 66, 0.94);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(10, 77, 104, 0.25);
+}
+
+.site-nav .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffe600;
+    text-decoration: none;
+    letter-spacing: 0.6px;
+    text-shadow:
+        0 0 3px #fffde7,
+        0 0 8px #fff59d,
+        0 0 16px #ffe600,
+        0 0 30px #ffd000,
+        0 0 55px #ffb300,
+        0 2px 10px rgba(50, 30, 0, 0.55);
+    animation: logo-neon 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes logo-neon {
+    from {
+        text-shadow:
+            0 0 2px #fffde7,
+            0 0 6px #fff59d,
+            0 0 12px #ffe600,
+            0 0 24px #ffd000,
+            0 0 42px #ffb300,
+            0 2px 10px rgba(50, 30, 0, 0.55);
+    }
+    to {
+        text-shadow:
+            0 0 4px #fffde7,
+            0 0 10px #fff59d,
+            0 0 20px #ffe600,
+            0 0 38px #ffd000,
+            0 0 68px #ffb300,
+            0 2px 10px rgba(50, 30, 0, 0.55);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-nav .logo { animation: none; }
+}
+
+.site-nav .logo-mark {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ocean-light), var(--ocean));
+    box-shadow: 0 4px 12px rgba(5, 191, 219, 0.4);
+}
+
+.site-nav .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.site-nav .nav-menu > a,
+.nav-btn {
+    color: var(--ocean-deep);
+    font-weight: 700;
+    text-decoration: none;
+    background: none;
+    border: 0;
+    font-size: 1rem;
+    padding: 0;
+    transition: color 0.15s ease;
+}
+
+.site-nav .nav-menu > a:hover,
+.nav-btn:hover { color: var(--ocean); }
+
+.site-nav.solid .nav-menu > a,
+.site-nav.solid .nav-btn { color: #eafaff; }
+
+.site-nav.solid .nav-menu > a:hover,
+.site-nav.solid .nav-btn:hover { color: #8df3ff; }
+
+.nav-btn.dropdown-toggle::after { margin-left: 0.4rem; }
+
+.dropdown-menu {
+    border: 0;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow);
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+}
+
+.dropdown-menu .dropdown-item {
+    border-radius: 8px;
+    padding: 0.45rem 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background: var(--ocean-soft);
+    color: var(--ocean-deep);
+}
+
+/* ---------- Hero (plage immersive) ---------- */
+.hero {
+    position: relative;
+    min-height: 640px;
+    display: flex;
+    flex-direction: column;
+    /* photo de plage + degrade chaud */
+    background-color: #2ec4c0;
+    background-image:
+        linear-gradient(180deg, rgba(10, 77, 104, 0.35) 0%, rgba(10, 77, 104, 0.15) 40%, rgba(255, 169, 77, 0.25) 100%),
+        url("https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Boracay_White_Beach.png/1280px-Boracay_White_Beach.png");
+    background-size: cover;
+    background-position: center 60%;
+    overflow: hidden;
+}
+
+/* soleil couchant decoratif */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 60px;
+    right: 12%;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffe08a 0%, #ffa94d 45%, rgba(255, 169, 77, 0) 75%);
+    filter: blur(2px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 0 4rem;
+    max-width: 780px;
+}
+
+.hero-title {
+    font-family: "Caveat", cursive;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 0.95;
+    color: #fff;
+    margin: 0 0 1rem;
+    text-shadow: 0 4px 24px rgba(10, 77, 104, 0.55), 0 2px 6px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.5px;
+}
+
+.hero-sub {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    max-width: 520px;
+    margin-bottom: 2.2rem;
+    text-shadow: 0 2px 12px rgba(10, 77, 104, 0.6);
+}
+
+/* recherche : carte de verre */
+.searchbar {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: 999px;
+    box-shadow: 0 18px 40px rgba(10, 77, 104, 0.25);
+    padding: 0.4rem;
+    max-width: 760px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.searchbar .field {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex: 1;
+    padding: 0.5rem 1rem;
+    min-width: 0;
+}
+
+.searchbar .field + .field {
+    border-left: 1px solid rgba(10, 77, 104, 0.12);
+}
+
+.searchbar .field-icon {
+    font-size: 1.1rem;
+    opacity: 0.7;
+}
+
+.searchbar select,
+.searchbar input {
+    border: 0;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 0.98rem;
+    font-family: inherit;
+    color: var(--text);
+    padding: 0.2rem 0;
+}
+
+.btn-comparer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e05245;
+    color: #fff;
+    border: 1px solid #c44338;
+    border-radius: 8px;
+    padding: 0.85rem 1.8rem;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    box-shadow: 0 3px 0 #a6362c;
+    white-space: nowrap;
+}
+
+.btn-comparer:hover {
+    background: #c44338;
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #a6362c;
+}
+
+/* bandeau de confiance */
+.trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2.2rem;
+    margin-top: 2rem;
+}
+
+.trust-row .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.98rem;
+    text-shadow: 0 2px 8px rgba(10, 77, 104, 0.5);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- Titres de section ---------- */
+.section-ocean {
+    background: linear-gradient(180deg, var(--ocean) 0%, var(--ocean-deep) 100%);
+    padding: 4rem 0 5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-ocean::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 169, 77, 0.08) 0%, transparent 45%);
+    pointer-events: none;
+}
+
+.section-title {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.section-sub {
+    color: rgba(255, 255, 255, 0.92);
+    text-align: center;
+    margin: 0.5rem 0 0;
+    font-weight: 600;
+    font-size: 1.05rem;
+    position: relative;
+}
+
+.section-light { padding: 4rem 0; background: var(--sand-light); }
+
+/* ---------- Cartes destinations ---------- */
+.dest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.6rem;
+    max-width: 1080px;
+    margin: 2.8rem auto 0;
+    position: relative;
+}
+
+.dest-card { display: block; text-decoration: none; }
+
+.dest-card .thumb {
+    height: 170px;
+    border-radius: 20px;
+    background-color: var(--ocean);
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(135deg, var(--ocean-light), var(--ocean-deep));
+    box-shadow: 0 12px 28px rgba(10, 77, 104, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.dest-card .thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(10, 77, 104, 0.55) 100%);
+    pointer-events: none;
+}
+
+.dest-card .dest-name {
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-top: 0.85rem;
+    letter-spacing: 0.3px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Statistiques ---------- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.6rem;
+}
+
+.stat-card {
+    background: linear-gradient(160deg, #fff 0%, var(--sand-light) 100%);
+    border: 1px solid rgba(10, 77, 104, 0.08);
+    border-radius: var(--radius);
+    padding: 1.7rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(5, 191, 219, 0.15), transparent 70%);
+    pointer-events: none;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
+
+.stat-card .stat-big {
+    font-size: 1.55rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+    color: var(--ocean-deep);
+}
+
+.stat-card .stat-small {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.stat-card .stat-stars {
+    color: var(--sunset-gold);
+    font-size: 1.35rem;
+    letter-spacing: 3px;
+    margin-bottom: 0.7rem;
+    text-shadow: 0 2px 6px rgba(255, 169, 77, 0.3);
+}
+
+/* ---------- En-tete des pages internes ---------- */
+.page-hero {
+    background: linear-gradient(120deg, var(--ocean-deep) 0%, var(--ocean) 50%, var(--ocean-light) 100%);
+    color: #fff;
+    padding: 2.8rem 0;
+    margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 70%);
+    pointer-events: none;
+}
+
+.page-hero h1 {
+    font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+    font-weight: 800;
+    margin: 0 0 0.4rem;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.page-hero p {
+    margin: 0;
+    font-weight: 600;
+    opacity: 0.95;
+    font-size: 1.05rem;
+}
+
+.page-hero .back-link {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.92rem;
+    opacity: 0.9;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+}
+
+.page-hero .back-link:hover { opacity: 1; text-decoration: underline; }
+
+/* ---------- Cartes tour operateur ---------- */
+.to-card {
+    background: linear-gradient(160deg, #fff 0%, var(--sand-light) 100%);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    padding: 1.8rem;
+    margin-bottom: 1.8rem;
+    border-top: 4px solid transparent;
+    border-image: linear-gradient(90deg, var(--ocean-light), var(--sunset)) 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.to-card::before {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(5, 191, 219, 0.1), transparent 70%);
+    pointer-events: none;
+}
+
+.to-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.to-card.is-premium {
+    border-top-color: var(--sunset-gold);
+}
+
+.to-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+}
+
+.to-name {
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin: 0 0 0.4rem;
+    color: var(--ocean-deep);
+}
+
+.badge-premium {
+    display: inline-block;
+    background: #e08b1b;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.25rem 0.7rem;
+    border-radius: 5px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    letter-spacing: 0.4px;
+}
+
+/* ---------- Comparaison des offres ---------- */
+.offers-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem 2rem;
+    flex-wrap: wrap;
+    background: linear-gradient(120deg, var(--ocean-deep), var(--ocean));
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    margin-bottom: 1.6rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.offers-summary-main {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 700;
+    flex-wrap: wrap;
+}
+
+.offers-count {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    padding: 0.18rem 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.offers-summary-main strong,
+.offers-summary-best strong { color: #ffe600; }
+
+.offers-summary-best {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+}
+
+.offers-summary .badge-best { margin-left: 0; }
+.summary-sep { opacity: 0.55; }
+
+.offers-sort {
+    font-size: 0.78rem;
+    opacity: 0.75;
+    font-weight: 600;
+}
+
+.badge-best,
+.badge-top {
+    display: inline-block;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.25rem 0.7rem;
+    border-radius: 5px;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    letter-spacing: 0.4px;
+}
+
+.badge-best { background: var(--palm); }
+.badge-top { background: var(--sunset-gold); color: #613b00; }
+
+.to-card.is-best {
+    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.55), var(--shadow-soft);
+}
+
+.to-card.is-best:hover {
+    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.65), var(--shadow);
+}
+
+.stars { color: var(--sunset-gold); font-size: 1.2rem; letter-spacing: 2px; }
+.stars .empty { color: #c8d8dc; }
+.grade-note { color: var(--text-soft); font-size: 0.92rem; font-weight: 600; }
+
+.price-tag {
+    background: linear-gradient(135deg, var(--ocean-soft), #fff);
+    border-radius: 16px;
+    padding: 0.85rem 1.4rem;
+    text-align: center;
+    min-width: 160px;
+    border: 1px solid rgba(5, 191, 219, 0.2);
+    box-shadow: 0 6px 16px rgba(5, 191, 219, 0.12);
+}
+
+.price-tag .price-label {
+    font-size: 0.72rem;
+    color: var(--text-soft);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.price-tag .amount {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--ocean-deep);
+    line-height: 1.2;
+}
+
+.to-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.3rem;
+}
+
+.to-sep {
+    border: 0;
+    border-top: 1px solid rgba(10, 77, 104, 0.1);
+    margin: 1.4rem 0;
+}
+
+.to-subtitle {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 0 0 1rem;
+    color: var(--ocean-deep);
+}
+
+.to-empty {
+    background: linear-gradient(160deg, #fff, var(--sand-light));
+    border: 1px dashed rgba(10, 77, 104, 0.25);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    text-align: center;
+    color: var(--text-soft);
+    font-weight: 600;
+}
+
+/* ---------- Fiche detail ---------- */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.7rem;
+}
+
+.info-panel {
+    background: linear-gradient(160deg, #fff 0%, var(--sand-light) 100%);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    padding: 1.7rem;
+    border: 1px solid rgba(10, 77, 104, 0.06);
+}
+
+.list-price {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(10, 77, 104, 0.08);
+    font-weight: 700;
+}
+
+.list-price:last-child { border-bottom: 0; }
+.list-price span:last-child { color: var(--ocean-deep); }
+.list-price a { color: var(--ocean); font-weight: 700; }
+.list-price a:hover { color: var(--ocean-deep); text-decoration: underline; }
+
+/* ---------- Avis et formulaires ---------- */
+.review {
+    display: flex;
+    gap: 0.9rem;
+    background: linear-gradient(160deg, var(--ocean-soft) 0%, #fff 100%);
+    border-radius: 16px;
+    padding: 0.95rem 1.1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid rgba(5, 191, 219, 0.15);
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    flex: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ocean-light), var(--ocean));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(5, 191, 219, 0.3);
+}
+
+.review .who { font-weight: 800; color: var(--ocean-deep); }
+.review .msg { color: var(--text-soft); margin: 0.15rem 0 0; font-size: 0.95rem; line-height: 1.5; }
+.no-review { color: var(--text-soft); font-size: 0.92rem; font-style: italic; }
+
+.form-box { margin-top: 1.2rem; }
+
+.form-box .form-control,
+.form-box .form-select {
+    border-radius: 14px;
+    border: 1px solid rgba(10, 77, 104, 0.15);
+    padding: 0.6rem 1rem;
+    font-family: inherit;
+    background: #fff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-box .form-control:focus,
+.form-box .form-select:focus {
+    border-color: var(--ocean);
+    box-shadow: 0 0 0 0.2rem rgba(8, 131, 149, 0.18);
+}
+
+textarea.form-control { min-height: 85px; resize: vertical; }
+
+.grade-options { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 0.9rem; }
+.grade-option input { display: none; }
+.grade-option span {
+    display: inline-block;
+    border: 1px solid rgba(10, 77, 104, 0.15);
+    border-radius: 999px;
+    padding: 0.4rem 0.95rem;
+    font-weight: 700;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: 0.2s ease;
+    background: #fff;
+}
+.grade-option input:checked + span {
+    background: var(--ocean-deep);
+    border-color: var(--ocean-deep);
+    color: #fff;
+}
+.grade-option span:hover { border-color: var(--ocean); color: var(--ocean-deep); }
+
+.flash {
+    background: linear-gradient(135deg, var(--ocean-soft), #fff);
+    border: 1px solid rgba(5, 191, 219, 0.3);
+    color: var(--ocean-deep);
+    border-radius: 14px;
+    padding: 0.9rem 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.4rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.flash.error {
+    background: linear-gradient(135deg, #ffecec, #fff);
+    border-color: rgba(255, 107, 107, 0.3);
+    color: #c0392b;
+}
+
+/* ---------- Administration ---------- */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.6rem;
+    margin-bottom: 2rem;
+}
+
+.admin-card {
+    background: linear-gradient(160deg, #fff 0%, var(--sand-light) 100%);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    padding: 1.7rem;
+    border: 1px solid rgba(10, 77, 104, 0.06);
+}
+
+.admin-card h2 { font-size: 1.15rem; font-weight: 800; margin: 0 0 1.1rem; color: var(--ocean-deep); }
+.admin-card .form-control,
+.admin-card .form-select { border-radius: 12px; border: 1px solid rgba(10, 77, 104, 0.15); padding: 0.6rem 1rem; }
+
+.login-box {
+    max-width: 420px;
+    margin: 3.5rem auto;
+    background: linear-gradient(160deg, #fff 0%, var(--sand-light) 100%);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2.2rem;
+    border: 1px solid rgba(10, 77, 104, 0.06);
+}
+
+.login-box h2 { font-weight: 800; margin-bottom: 0.3rem; color: var(--ocean-deep); }
+.login-box p { color: var(--text-soft); font-size: 0.92rem; }
+
+.admin-list { list-style: none; padding: 0; margin: 0; }
+.admin-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background: linear-gradient(160deg, #fff, var(--sand-light));
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(10, 77, 104, 0.07);
+    padding: 0.95rem 1.2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    border: 1px solid rgba(10, 77, 104, 0.06);
+}
+
+.admin-list .status { font-size: 0.88rem; color: var(--text-soft); font-weight: 600; }
+
+/* ---------- Page Destinations (comparateur) : meme style que l'accueil ---------- */
+.destinations-page {
+    background: var(--sand-light);
+    padding: 3rem 0 4rem;
+}
+
+.destinations-card {
+    max-width: 760px;
+    margin: 0 auto;
+    background: linear-gradient(160deg, #fff 0%, var(--sand-light) 100%);
+    border: 1px solid rgba(10, 77, 104, 0.08);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2.6rem 2.8rem;
+}
+
+.dest-row {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 2.8rem;
+}
+
+.dest-row:last-child { margin-bottom: 0; }
+.dest-row.inverse { flex-direction: row-reverse; }
+
+.dest-row .photo {
+    width: 210px;
+    height: 175px;
+    flex: none;
+    border-radius: 20px;
+    background-color: var(--ocean);
+    background-image: linear-gradient(135deg, var(--ocean-light), var(--ocean-deep));
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 12px 28px rgba(10, 77, 104, 0.22);
+    transition: none;
+}
+
+.dest-row .info { flex: 1; min-width: 0; }
+
+.dest-row .info ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0;
+    color: var(--text);
+    font-size: 1.02rem;
+    line-height: 1.9;
+}
+
+.dest-row .info li::marker { color: var(--ocean); }
+.dest-row .info strong { font-weight: 800; color: var(--ocean-deep); }
+.destinations-vide { color: var(--text-soft); font-weight: 700; text-align: center; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .hero { min-height: 560px; background-position: center 50%; }
+    .hero::before { width: 80px; height: 80px; top: 40px; right: 8%; }
+
+    .searchbar {
+        flex-wrap: wrap;
+        border-radius: 24px;
+        padding: 0.7rem;
+    }
+
+    .searchbar .field {
+        min-width: 100%;
+        border-left: 0 !important;
+        padding: 0.55rem 0.6rem;
+    }
+
+    .searchbar .field + .field {
+        border-top: 1px solid rgba(10, 77, 104, 0.1);
+    }
+
+    .btn-comparer {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    .trust-row { gap: 0.7rem; flex-direction: column; align-items: flex-start; }
+    .site-nav .nav-menu { gap: 1rem; }
+    .site-nav .logo { font-size: 1.3rem; }
+
+    .to-head { flex-direction: column; }
+    .price-tag { text-align: left; min-width: 0; }
+    .promo { text-align: left; }
+    .wave { height: 50px; }
+
+    .destinations-card { padding: 1.8rem 1.3rem; }
+    .destinations-card h1 { font-size: 1.9rem; }
+    .dest-row,
+    .dest-row.inverse { flex-direction: column; gap: 1.2rem; }
+    .dest-row .photo { width: 100%; height: 190px; }
+}
+
+@media (max-width: 480px) {
+    .hero-title { font-size: clamp(2.6rem, 12vw, 3.6rem); }
+    .dest-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+}
