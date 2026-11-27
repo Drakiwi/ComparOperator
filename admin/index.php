@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])){
         $name = trim($_POST['name'] ?? '');
         $link = trim($_POST['link'] ?? '');
 
-        if ($name !== '' && filter_var($link, FILTER_VALIDATE_URL)) {
+        if ($name !== '' && filter_var($link, FILTER_VALIDATE_URL)){
             $to = new TourOperator($name, $link);
 
             if ($to->create($db)){
                 $_SESSION['admin_message'] = 'Tour-opérateur ajouté avec succès !';
             } else{
-                $_SESSION['admin_message'] = 'Erreur lors de l’ajout du tour-opérateur.';
+                $_SESSION['admin_message'] = 'impossible ';
             }
         } else{
             $_SESSION['admin_message'] = 'Veuillez remplir correctement les champs.';
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])){
     header('Location: index.php');
     exit;
 }
-
+?>
 $tousLesTo = TourOperator::getAll($db);
 ?>
 
@@ -113,10 +113,10 @@ $tousLesTo = TourOperator::getAll($db);
 
     <div class="container hero-content">
 
-        <h1 class="hero-title">Espace pour l'administrateur</h1>
+        <h1 class="hero-title">Bienvenu Administrateur !</h1>
 
         <p class="hero-sub">
-            Gérez les tours-opérateurs et leurs destinations.
+            Ici, vous pouvez gérer les tours opérateurs et les différentes destinations 
         </p>
 
         <div class="trust-row">
@@ -218,7 +218,7 @@ $tousLesTo = TourOperator::getAll($db);
 
     <h2 class="section-title">Gérer les opérateurs</h2>
 
-    <div class="admin-list">
+ <div class="admin-list">
 
         <?php foreach ($tousLesTo as $to): ?>
 
@@ -265,7 +265,6 @@ $tousLesTo = TourOperator::getAll($db);
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
